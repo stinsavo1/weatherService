@@ -1,0 +1,16 @@
+<div class="weather-container">
+  <app-search (query)="search($event)" (clearQuery)="clearQuery()"></app-search>
+</div>
+
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" [selectedIndex]="selectedIndexTab"
+               (selectedTabChange)="tabChanged($event)">
+  <mat-tab [tabIndex]="tabIndex.HOURLY" [label]="tabName.HOURLY">
+    <app-table *ngIf="columnNameHourly.length && hourlyData.length" [columnName]="columnNameHourly"
+               [data]="hourlyData"></app-table>
+  </mat-tab>
+  <mat-tab [tabIndex]="tabIndex.DAILY" [label]="tabName.DAILY">
+    <app-table *ngIf="columnNameDaily.length && dailyData.length" [columnName]="columnNameDaily"
+               [data]="dailyData"></app-table>
+  </mat-tab>
+</mat-tab-group>
+<mat-spinner *ngIf="loader" class="spinner"></mat-spinner>
